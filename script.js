@@ -8,7 +8,7 @@ function uploadLogFile() {
     const fileName = file.name.split('.')[0];
     fetch('/parse', { method: 'POST', body: file })
         .then(response => response.text())
-        .then(data => {
+        .then(() => {
             const htmlFile = fileName === 'DEBUG' ? 'debug.html' : 'Logs.html';
             window.open(htmlFile);
         });
