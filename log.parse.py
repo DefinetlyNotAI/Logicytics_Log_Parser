@@ -95,11 +95,11 @@ def upload_file():
         return render_template_string(open('Log.html').read())
 
     return '''
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".log">
-        <input type="submit" value="Upload">
-    </form>
-    '''
+<form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".log">
+    <input type="submit" value="Upload">
+</form>
+'''
 
 
 if __name__ == '__main__':
