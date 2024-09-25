@@ -1,7 +1,9 @@
+from flask import Flask, request
 import re
+app = Flask(__name__)
 
 
-def parse_log(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\] > (\w+):.*?\| (.*)', css_template: str = 'styles.css'):
+def parse_log_lib(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\] > (\w+):.*?\| (.*)', css_template: str = 'styles.css'):
     with open(Log_Name, 'r') as file:
         log_output = file.read()
 
@@ -26,3 +28,20 @@ def parse_log(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\] > 
     html_table += "</table>"
 
     open(HTML_Name, 'w').write(html_table)
+
+
+@app.route('/parse', methods=['POST'])
+def parse_log():
+    file = request.files['file']
+    name = file.filename.split('.')[0]
+
+    if name == 'DEBUG':
+        return parse_log_lib('DEBUG.log', 'debug.html')
+    elif name == 'Logicytics':
+        return parse_log_lib('Logicytics.log', 'Logs.html')
+    else:
+        return 'Error: Invalid file'
+
+
+if __name__ == '__main__':
+    app.run()
