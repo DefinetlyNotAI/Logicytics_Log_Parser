@@ -36,27 +36,48 @@ def parse_log_lib(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\
 
 
 def err_400(special_message: str = "The server cannot process the request due to invalid syntax.") -> tuple[str, int]:
-    body = "{ font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; }"
-    color = "{color: #ff0000; }"
-    p_color = "{ color: #666; }"
-    return rf'''<!DOCTYPE html>
+    return f'''
+<style>
+    {open("err.styles.css", 'r').read()}
+</style>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Error 400</title>
-    <style>
-        body {body}
-        h1 {color}
-        p {p_color}
-    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>404 HTML Template by Colorlib</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
+
+    <!-- Custom stylesheet -->
+    <link type="text/css" rel="stylesheet" href="err.styles.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-    <h1>Error 400: Bad Request</h1>
-    <p>{special_message}</p>
-    <a href="/">Back to Home</a>
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>Oops!</h1>
+            <h2>400 - {special_message}</h2>
+        </div>
+        <a href="/">Go To Homepage</a>
+    </div>
+</div>
 </body>
+<!-- These templates were made by Colorlib (https://colorlib.com) -->
 </html>
-    ''', 400
+''', 400
 
 
 @app.route('/', methods=['GET', 'POST'])

@@ -1,3 +1,7 @@
-Make the html error pages look better and more sleek
+Make the beginning html upload neater
 
 Make the table have hints for hovering over severity
+
+Use a wsgi server, and test
+
+Add to github actions
