@@ -1,29 +1,29 @@
-        .info { color: #00ff00; }
-        .warning { color: #cdcd00; }
-        .error { color: #ff0000; }
-        .critical { color: #cd0000; }
+.info { color: #00ff00; }
+.warning { color: #cdcd00; }
+.error { color: #ff0000; }
+.critical { color: #cd0000; }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            font-family: Arial, sans-serif;
-        }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
 
-        th {
-            background-color: #f2f2f2;
-        }
+th {
+    background-color: #f2f2f2;
+}
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-        td {
-            max-width: 200px;
-            overflow-wrap: break-word;
-        }
+td {
+    max-width: 200px;
+    overflow-wrap: break-word;
+}

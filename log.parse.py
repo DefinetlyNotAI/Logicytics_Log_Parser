@@ -11,17 +11,16 @@ def parse_log_lib(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\
 
     matches = re.findall(regex_pattern, log_output)
 
-    html_table = f"""
-    <style>
-{open(css_template, 'r').read()}
-    </style>
-    <table>
-        <tr>
-            <th>Time</th>
-            <th>Severity</th>
-            <th>Data</th>
-        </tr>
-    """
+    html_table = f"""<style>
+    {open(css_template, 'r').read()}
+</style>
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Severity</th>
+        <th>Data</th>
+    </tr>
+"""
     for match in matches:
         text = match[2].strip().removesuffix('|')
         cleaned_text = text.rstrip()
@@ -30,7 +29,7 @@ def parse_log_lib(Log_Name: str, HTML_Name: str, regex_pattern: str = r'\[(.*?)\
             <td class="{match[1].lower()}">{match[1]}</td>
             <td>{cleaned_text}</td>
         </tr>\n"""
-    html_table += "</table>"
+    html_table += "</table>\n"
 
     open(HTML_Name, 'w').write(html_table)
 
