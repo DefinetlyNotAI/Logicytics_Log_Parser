@@ -1,5 +1,3 @@
-Make the beginning html upload neater
-
 Make the table have hints for hovering over severity
 
 Use a wsgi server, and test
