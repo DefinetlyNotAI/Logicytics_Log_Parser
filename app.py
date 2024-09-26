@@ -1,6 +1,8 @@
 import os
 import re
 from flask import Flask, request, render_template_string
+import git
+import subprocess
 
 app = Flask(__name__)
 
@@ -93,14 +95,19 @@ def upload_file():
         log_content = uploaded_file.read().decode('utf-8')
         open('Log.log', 'w').write(log_content)
         parse_log_lib("Log.log", 'Log.html')
-        return render_template_string(open('Log.html').read())
 
-    return '''
-<form action="" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" accept=".log">
-    <input type="submit" value="Upload">
-</form>
-'''
+        # Push changes to GitHub
+        repo = git.Repo('.')
+        repo.index.add(['Log.html'])
+        repo.index.commit('Update Log.html')
+        origin = repo.remotes.origin
+        origin.push()
+
+        # Open GitHub Pages
+        url = "https://definetlynotai.github.io/Logicytics_Log_Parser/"
+        subprocess.run(["start", url])  # For Windows
+
+        return render_template_string(open('Log.html').read())
 
 
 if __name__ == '__main__':
